@@ -1,17 +1,17 @@
 import React from 'react'
 import CustomNavbar from '../components/CustomNavbar'
 import Routers from '../router/Routers'
-import Footer from '../components/Footer'
+//import Footer from '../components/Footer'
 
 const Layout = () => {
   return (
     <>
-    <CustomNavbar />
+   <CustomNavbar />
     <div className='h-screen'>
         <Routers />
     </div>
-    <Footer />
-    </>
+   
+  </>
   )
 }
 
