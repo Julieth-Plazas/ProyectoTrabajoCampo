@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import imagen1 from '../assets/imagenes/Salid_guatica1.jpg';
 import imagen2 from '../assets/imagenes/salida_guatica2.jpg';
 import imagen3 from '../assets/imagenes/salida_guatica3.jpg';
@@ -34,7 +34,7 @@ const Gallery = () => {
                     <img
                         className='absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2'
                         src={images[currentImage]}
-                        alt={`Image ${currentImage + 1}`}
+                        alt={`Niño ${currentImage + 1}`}
                     />
                 </div>
                 <div className="flex justify-center items-center pt-4">
