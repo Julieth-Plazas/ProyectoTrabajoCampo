@@ -36,6 +36,7 @@ const Home = () => {
                         class="lg:absolute lg:w-full lg:h-full rounded-3xl object-cover lg:max-h-none max-h-96  " />
                 </div>
             </div>
+            <Gallery/>
             
         </section>
     )
