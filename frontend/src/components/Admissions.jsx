@@ -1,5 +1,6 @@
 import React from 'react'
 import inscripcion from '../assets/imagenes/ImagenInscripciones.jpg';
+import inscripcion2 from '../assets/imagenes/ImagenIns2.jpg';
 
 const Admissions = () => {
   return (
@@ -7,7 +8,7 @@ const Admissions = () => {
 
 
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
-        <p className="mb-3 text-gray-500 dark:text-gray-400" style={{ marginLeft: '100px' }}>
+        <p className="mb-3 text-gray-500 dark:text-gray-400" style={{ marginLeft: '250px' }}>
           <p className="max-w-lg text-3xl font-semibold leading-relaxed text-gray-900 dark:text-white" style={{ color: 'green', margin: '20px 0' }}>
             Componente Pedagógico</p>
 
@@ -52,8 +53,8 @@ const Admissions = () => {
             </li>
 
             <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white" style={{ textAlign: 'center', color: 'green', margin: '20px 0' }}>Recesos Académicos:</h2>
-            <li style={{ margin: '20px 0' }}>
-              <span class="font-semibold text-gray-900 dark:text-white">SEMANA SANTA: </span> del 3 de Abril al 7 de Abril
+            <li>
+              <span class="font-semibold text-gray-900 dark:text-white" style={{margin: '20px 0' }}>SEMANA SANTA: </span> del 3 de Abril al 7 de Abril
             </li>
             <li>
               <span class="font-semibold text-gray-900 dark:text-white">VACACIONES: </span> del 20 de Junio al 7 de Julio
@@ -67,10 +68,14 @@ const Admissions = () => {
 
       <div class="flex flex-1 justify-center">
   <div class="lg:w-full lg:mx-20 relative">
-    <div class="absolute inset-2 mt-10 mb-10 bg-white opacity-50 rounded-2xl "></div>
-    <img src={inscripcion} alt="VISION" loading="lazy" class='border rounded-2xl mt-6 mb-6 w-full' />
+    <div class="absolute inset-2 mt-10 mb-10 bg-white opacity-50 rounded-2xl"></div>
+    <img src={inscripcion} alt="VISION" loading="lazy" class='border rounded-2xl mt-6 mb-6 w-1/2 lg:w-full' />
+    <div class="absolute inset-2 mt-10 mb-10">
+      <img src={inscripcion2} alt="Segunda Imagen" class="w-full h-full object-cover rounded-2xl" />
+    </div>
   </div>
 </div>
+
 
 
 

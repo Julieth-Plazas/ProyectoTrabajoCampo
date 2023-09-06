@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Navbar as NextUINavbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenuItem, NavbarMenu } from "@nextui-org/react";
-import { FaUser } from 'react-icons/fa'; // Importa el icono de usuario
+import { FaUser } from 'react-icons/fa'; 
 import { AcmeLogo } from "./AcmeLogo.jsx";
 import { AuthContext } from '../context/AuthContext.js';
 
@@ -17,7 +17,7 @@ const CustomNavbar = () => {
         window.location.href = '/';
     }
 
-    // Define los enlaces del menú
+
     const menuLinks = [
         {
             name: "Inicio",
@@ -46,7 +46,7 @@ const CustomNavbar = () => {
             },
             {
                 name: "Registrar Docente",
-                path: "/register",
+                path: "/registrar-docente",
             },
             {
                 name: "Asignar Curso",
@@ -127,6 +127,8 @@ const CustomNavbar = () => {
                                     >
                                         {user.username}
                                     </a>
+
+
                                     {userLinks.map((item, index) => (
                                         <a
                                             key={`user-link-${index}`}
@@ -165,19 +167,20 @@ const CustomNavbar = () => {
                 }
             </NavbarContent>
             <NavbarMenu>
-                {menuLinks.map((item, index) => (
-                    <NavbarMenuItem key={`${item.name}-${index}`}>
-                        <Link
-                            color='foreground'
-                            className="w-full"
-                            href={item.path}
-                            size="lg"
-                        >
-                            {item.name} {/* Fix: Use item.name instead of item */}
-                        </Link>
-                    </NavbarMenuItem>
-                ))}
-            </NavbarMenu>
+        {menuLinks.map((item, index) => (
+          <NavbarMenuItem key={`${item.name}-${index}`}>
+            <Link
+              color="foreground"
+              
+              className="w-full"
+              href={item.path}
+              size="lg"
+            >
+              {item.name} 
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
         </NextUINavbar>
     );
 }
