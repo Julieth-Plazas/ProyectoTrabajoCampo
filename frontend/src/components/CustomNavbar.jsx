@@ -46,7 +46,7 @@ const CustomNavbar = () => {
             },
             {
                 name: "Registrar Docente",
-                path: "/registrar-docente",
+                path: "/register",
             },
             {
                 name: "Asignar Curso",
