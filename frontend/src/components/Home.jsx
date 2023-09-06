@@ -3,11 +3,9 @@ import Gallery from './Gallery'
 
 const Home = () => {
     return (
-        <section class="relative py-32 lg:py-36 bg-white">
+<section class="relative pt-8 lg:pt-4 pb-32 bg-white">
             <div
                 class="mx-auto lg:max-w-7xl w-full px-5 sm:px-10 md:px-12 lg:px-5 flex flex-col lg:flex-row gap-10 lg:gap-12">
-
-                {/* <span class="w-4/12 lg:w-2/12 aspect-square bg-gradient-to-tr from-blue-600 to-green-400 absolute -top-5 lg:left-0 rounded-full skew-y-12 blur-2xl opacity-40 skew-x-12 rotate-90"></span> */}
                 <div class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8
             lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
 
