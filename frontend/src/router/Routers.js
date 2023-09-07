@@ -7,6 +7,7 @@ import NotFound from '../components/NotFound'
 import Register from '../components/Register'
 import Admissions from '../components/Admissions'
 import Home from '../components/Home'
+import Publications from '../components/Publications'
 
 const Routers = () => {
   return (
@@ -17,7 +18,8 @@ const Routers = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admisiones" element={<Admissions />} />
-        
+        <Route path="/publicar" element={<Publications />} />
+
         <Route path="*" element={<NotFound />} />
     </Routes>
   )
