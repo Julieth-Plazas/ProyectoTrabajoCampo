@@ -9,6 +9,7 @@ import Admissions from '../components/Admissions'
 import Home from '../components/Home'
 import Publications from '../components/Publications'
 import RegisterCourses from '../components/RegisterCourses'
+import AsignCourse from '../components/AsignCourse'
 
 const Routers = () => {
   return (
@@ -21,6 +22,7 @@ const Routers = () => {
         <Route path="/admisiones" element={<Admissions />} />
         <Route path="/publicar" element={<Publications />} />
         <Route path="/registerCourses" element={<RegisterCourses />} />
+        <Route path='/asignarCurso' element={<AsignCourse/>}/>
 
 
         <Route path="*" element={<NotFound />} />

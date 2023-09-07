@@ -6,6 +6,7 @@ import inicio from '../assets/Inicio.jpg';
 import admision from '../assets/admisiones.png';
 import nosotros from '../assets/nosotros.jpeg';
 import contacto from '../assets/contactanos.jpg';
+import AsignCourse from './AsignCourse.jsx';
 
 
 const CustomNavbar = () => {
@@ -14,6 +15,8 @@ const CustomNavbar = () => {
 
     const { user, dispatch } = useContext(AuthContext);
     user ? console.log(user) : console.log("no hay usuario");
+
+
 
     const handleLogout = () => {
         dispatch({ type: 'LOGOUT' });
@@ -25,24 +28,24 @@ const CustomNavbar = () => {
         {
             name: "Inicio",
             path: "/",
-            icon:        <img src={inicio} alt="inicio" className="icon-class" style={{ width: '50px', height: '40px' }} />
+            icon: <img src={inicio} alt="inicio" className="icon-class" style={{ width: '50px', height: '40px' }} />
 
         },
         {
             name: "Admisiones",
             path: "/admisiones",
-            icon: <img src={admision} alt="admision" className="icon-class"  style={{ width: '50px', height: '40px' }}/>,
+            icon: <img src={admision} alt="admision" className="icon-class" style={{ width: '50px', height: '40px' }} />,
 
         },
         {
             name: "Nosotros",
             path: "/nosotros",
-            icon: <img src={nosotros} alt="nosotros" className="icon-class"  style={{ width: '50px', height: '40px' }}/>,
+            icon: <img src={nosotros} alt="nosotros" className="icon-class" style={{ width: '50px', height: '40px' }} />,
 
         }, {
             name: "Contactanos",
             path: "/contactanos",
-            icon: <img src={contacto} alt="contacto" className="icon-class"  style={{ width: '50px', height: '40px' }}/>,
+            icon: <img src={contacto} alt="contacto" className="icon-class" style={{ width: '50px', height: '40px' }} />,
 
         }
     ];
@@ -64,14 +67,15 @@ const CustomNavbar = () => {
                 path: "/registerCourses",
             },
             {
-                name: "Asignar Curso",
-                path: "/asignar-curso",
-            },
+                name:'Asignar curso',
+                path: '/asignarCurso'
+            }
+
         ]
         : user && user.cursos
             ? user.cursos.map(curso => ({
-                name: `Curso: ${curso.nombre}`,
-                path: `/curso/${curso.id}`,
+                name: `Curso: ${curso.title}`,
+                path: `/curso/${curso._id}`,
             }))
             : [];
 
@@ -97,8 +101,8 @@ const CustomNavbar = () => {
                 {menuLinks.map((item, index) => (
                     <NavbarItem key={`${item.name}-${index}`} isActive={item.path === window.location.pathname}>
                         <Link color="foreground" href={item.path}>
-                        {item.icon && <span className="mr-1 ">{item.icon}</span>}
-            {item.name}
+                            {item.icon && <span className="mr-1 ">{item.icon}</span>}
+                            {item.name}
                         </Link>
                     </NavbarItem>
                 ))}
@@ -157,10 +161,6 @@ const CustomNavbar = () => {
                                         </a>
                                     ))}
 
-
-
-
-
                                     <a
 
                                         className="block px-4 py-2 text-sm text-gray-700"
@@ -183,21 +183,23 @@ const CustomNavbar = () => {
                 }
             </NavbarContent>
             <NavbarMenu>
-        {menuLinks.map((item, index) => (
-          <NavbarMenuItem key={`${item.name}-${index}`}>
-            <Link
-              color="foreground"
+                {menuLinks.map((item, index) => (
+                    <NavbarMenuItem key={`${item.name}-${index}`}>
+                        <Link
+                            color="foreground"
 
-              className="w-full"
-              href={item.path}
-              size="lg"
-            >
-              {item.name}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
+                            className="w-full"
+                            href={item.path}
+                            size="lg"
+                        >
+                            {item.name}
+                        </Link>
+                    </NavbarMenuItem>
+                ))}
+            </NavbarMenu>
+
         </NextUINavbar>
+        
     );
 }
 

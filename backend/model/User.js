@@ -37,7 +37,13 @@ const userSchema = new mongoose.Schema({
         default: "user",
         enum: ["user", "admin"],
 
-    }
+    },
+    cursos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Curso"
+    }]
+    
+
 }, { timestamps: true });
 
 export default mongoose.model("User", userSchema);          

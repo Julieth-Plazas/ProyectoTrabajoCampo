@@ -25,7 +25,7 @@ export const login = async (req, res) => {
     console.log(req.body)
     try {
       const { email, password } = req.body;
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ email }).populate("cursos")
   
       console.log(user);
       if (!user) {

@@ -8,6 +8,8 @@ import multer from 'multer';
 
 
 import authRouter from './routes/auth.js';
+import cursoRouter from './routes/course.js';
+import userRouter from './routes/user.js'
 
 
 dotenv.config();
@@ -71,6 +73,8 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
+app.use('/api/cursos', cursoRouter);
+app.use('/api/users', userRouter)
 
 app.listen(PORT, () => {
     connect();
