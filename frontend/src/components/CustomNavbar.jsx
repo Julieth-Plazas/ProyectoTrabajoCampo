@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { Navbar as NextUINavbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenuItem, NavbarMenu } from "@nextui-org/react";
-import { FaUser } from 'react-icons/fa'; 
 import { AcmeLogo } from "./AcmeLogo.jsx";
 import { AuthContext } from '../context/AuthContext.js';
 
