@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
-//import Imagen from './model/imagen.js'; 
+//import Imagen from './model/imagen.js';
 
 
 import authRouter from './routes/auth.js';
@@ -35,7 +35,7 @@ const connect = async () => {
         console.log('MongoDB connected!');
     } catch (error) {
         console.log('MongoDB connection error: ', error);
-        
+
     }
 }
 
@@ -55,7 +55,7 @@ const storage = multer.diskStorage({
 
 
 //agregar nueva imagen
-app.post('/imagenes', async (req, res) => {
+app.post('/api/imagenes', async (req, res) => {
     try {
       const { fecha, titulo, descripcion } = req.body;
       const nuevaImagen = new Imagen({ fecha, titulo, descripcion });
