@@ -2,6 +2,10 @@ import React, { useContext, useState } from 'react';
 import { Navbar as NextUINavbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenuItem, NavbarMenu } from "@nextui-org/react";
 import { AcmeLogo } from "./AcmeLogo.jsx";
 import { AuthContext } from '../context/AuthContext.js';
+import inicio from '../assets/Inicio.jpg';
+import admision from '../assets/admisiones.png';
+import nosotros from '../assets/nosotros.jpeg';
+import contacto from '../assets/contactanos.jpg';
 
 
 const CustomNavbar = () => {
@@ -21,17 +25,25 @@ const CustomNavbar = () => {
         {
             name: "Inicio",
             path: "/",
+            icon:        <img src={inicio} alt="inicio" className="icon-class" style={{ width: '50px', height: '40px' }} />
+
         },
         {
             name: "Admisiones",
             path: "/admisiones",
+            icon: <img src={admision} alt="admision" className="icon-class"  style={{ width: '50px', height: '40px' }}/>,
+
         },
         {
             name: "Nosotros",
             path: "/nosotros",
+            icon: <img src={nosotros} alt="nosotros" className="icon-class"  style={{ width: '50px', height: '40px' }}/>,
+
         }, {
             name: "Contactanos",
             path: "/contactanos",
+            icon: <img src={contacto} alt="contacto" className="icon-class"  style={{ width: '50px', height: '40px' }}/>,
+
         }
     ];
 
@@ -85,7 +97,8 @@ const CustomNavbar = () => {
                 {menuLinks.map((item, index) => (
                     <NavbarItem key={`${item.name}-${index}`} isActive={item.path === window.location.pathname}>
                         <Link color="foreground" href={item.path}>
-                            {item.name}
+                        {item.icon && <span className="mr-1 ">{item.icon}</span>}
+            {item.name}
                         </Link>
                     </NavbarItem>
                 ))}

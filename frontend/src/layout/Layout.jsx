@@ -1,19 +1,20 @@
-import React from 'react'
-import CustomNavbar from '../components/CustomNavbar'
-import Routers from '../router/Routers'
-import Footer from '../components/Footer'
+import React from "react";
+import CustomNavbar from "../components/CustomNavbar";
+import Routers from "../router/Routers";
+import Footer from "../components/Footer";
 
 const Layout = () => {
   return (
     <>
-   <CustomNavbar />
-    <div className='h-screen'>
-        <Routers />
-    </div>
-    <Footer/>
-   
-  </>
-  )
-}
+      <div className="flex flex-col min-h-screen">
+        <CustomNavbar />
+        <div className="flex-grow">
+          <Routers />
+        </div>
+        <Footer />
+      </div>
+    </>
+  );
+};
 
-export default Layout
+export default Layout;
