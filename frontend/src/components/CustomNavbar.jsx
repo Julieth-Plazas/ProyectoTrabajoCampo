@@ -48,6 +48,10 @@ const CustomNavbar = () => {
                 path: "/register",
             },
             {
+                name: "Registrar Curso",
+                path: "/registerCourses",
+            },
+            {
                 name: "Asignar Curso",
                 path: "/asignar-curso",
             },
@@ -170,12 +174,12 @@ const CustomNavbar = () => {
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
               color="foreground"
-              
+
               className="w-full"
               href={item.path}
               size="lg"
             >
-              {item.name} 
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}

@@ -8,6 +8,7 @@ import Register from '../components/Register'
 import Admissions from '../components/Admissions'
 import Home from '../components/Home'
 import Publications from '../components/Publications'
+import RegisterCourses from '../components/RegisterCourses'
 
 const Routers = () => {
   return (
@@ -19,6 +20,8 @@ const Routers = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/admisiones" element={<Admissions />} />
         <Route path="/publicar" element={<Publications />} />
+        <Route path="/registerCourses" element={<RegisterCourses />} />
+
 
         <Route path="*" element={<NotFound />} />
     </Routes>
