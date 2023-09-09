@@ -1,14 +1,15 @@
-import {  NextUIProvider } from '@nextui-org/react'
+import { NextUIProvider } from '@nextui-org/react'
 import React from 'react'
 import Layout from './layout/Layout'
-import RegisterCourses from './components/RegisterCourses'
+import ParvulosGames from './components/ParvulosGames'
 
 const App = () => {
   return (
-    <NextUIProvider>
-    <Layout/>
+    //<NextUIProvider>
+    //<Layout/>
 
-   </NextUIProvider>
+    // </NextUIProvider>
+    <ParvulosGames />
   )
 }
 
