@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
-import imgA from "../assets/Img_Vocales/VocalA.jpeg";
-import imgE from "../assets/Img_Vocales/VocalE.png";
-import imgI from "../assets/Img_Vocales/VocalI.jpeg";
-import imgO from "../assets/Img_Vocales/VocalO.jpeg";
-import imgU from "../assets/Img_Vocales/VocalU.jpeg";
-import imgM from "../assets/Img_Vocales/VocalM.jpeg";
+import imgMono from '../assets/Img_Animales/Mono.jpeg';
+import imgLeon from '../assets/Img_Animales/Leon.jpeg';
+import imgConejo from '../assets/Img_Animales/Conejo.jpeg';
+import imgCoco from '../assets/Img_Animales/cocodrilo.jpeg';
+import imgPin from '../assets/Img_Animales/Pinguino.jpeg';
+import imgElefante from '../assets/Img_Animales/Elefante.jpeg';
+import imgPanda from '../assets/Img_Animales/Panda.jpeg';
+import imgPerro from '../assets/Img_Animales/Perro.jpeg';
+import imgLoro from '../assets/Img_Animales/Loro.jpeg';
+
+
 
 function Memorama() {
   const [numeros, setNumeros] = useState([]);
@@ -33,7 +38,7 @@ function Memorama() {
   }, [tiempo]);
 
   const cargarImagenes = () => {
-    const imageList = [imgA, imgE, imgI, imgO, imgM, imgU];
+    const imageList = [imgCoco,imgConejo, imgElefante, imgLeon, imgMono, imgPin, imgPanda,imgPerro,imgLoro];
     return imageList.concat(imageList);
   };
 
@@ -84,9 +89,9 @@ function Memorama() {
 
   const styles = {
     areaTarjeta: {
-        width: "calc(90vw / 6)",  
+        width: "calc(85vw / 6)",  
         minWidth: "130px",      
-        height: "calc(90vh / 4)",
+        height: "calc(85vh / 4)",
         cursor: "pointer",
         display: "inline-block",
       },
@@ -144,12 +149,12 @@ function Memorama() {
         </div>
       ) : null}
 
-<div
+      <div
         id="tablero"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(6, 1fr)",
-          gap: "20px",  
+          gap: "10px",
         }}
       >
         {numeros.map((imagen, i) => (
