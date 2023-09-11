@@ -52,6 +52,18 @@ const Publications = () => {
 
   return (
     <section className="flex justify-center items-center min-h-screen bg-white">
+        {alert && (
+                        <div
+                            className={`${data.success
+                                ? 'bg-green-100 border-t border-b border-green-500 text-green-700'
+                                : 'bg-red-100 border-t border-b border-red-500 text-red-700'
+                                } px-4 py-3`}
+                            role="alert"
+                        >
+                            <p className="font-bold">{data.success ? 'Success' : 'Error'}</p>
+                            <p className="text-sm">{alert}</p>
+                        </div>
+                    )}
       <div className="bg-gray-100 p-6  rounded-lg shadow-lg w-1/2 ">
         <div className="mb-4">
           <label htmlFor="large-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titulo</label>
