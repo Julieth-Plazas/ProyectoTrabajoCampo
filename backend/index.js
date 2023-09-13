@@ -41,30 +41,6 @@ const connect = async () => {
 
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'uploads/'); // Directorio donde se guardarán las imágenes subidas
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + '-' + file.originalname); // Nombre de archivo único
-    }
-  });
-
-  const upload = multer({ storage });
-
-
-
-//agregar nueva imagen
-app.post('/api/imagenes', async (req, res) => {
-    try {
-      const { fecha, titulo, descripcion } = req.body;
-      const nuevaImagen = new Imagen({ fecha, titulo, descripcion });
-      const imagenGuardada = await nuevaImagen.save();
-      res.status(201).json(imagenGuardada);
-    } catch (error) {
-      res.status(500).json({ error: 'Error al guardar la imagen' });
-    }
-  });
 
 
 
