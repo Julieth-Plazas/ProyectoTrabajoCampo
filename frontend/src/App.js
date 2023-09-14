@@ -6,11 +6,11 @@ import GameSumRes2 from './components/Figuras_Geometricas1'
 
 const App = () => {
   return (
-   // <NextUIProvider>
-    //<Layout/>
+   <NextUIProvider>
+    <Layout/>
 
-   //</NextUIProvider>
-   <GameSumRes2/>
+   </NextUIProvider>
+  //  <GameSumRes2/>
   )
 }
 

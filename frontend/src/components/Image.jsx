@@ -3,12 +3,12 @@ import '../assets/styles/post.css'
 const Image = ({ post }) => {
 
     return (
-        <div class="container mx-auto md:py-12 lg:px-20 md:px-6 py-9 px-4">
-            <div class="mt-10 max-w-sm mx-auto">
+        <div class="p-2">
+            <div class="">
                 <div class="relative group">
                     <img
                         src={post.rutaImagen}
-                        alt="Photo by Sébastien Goldberg on Unsplash" class="w-full rounded shadow-xl hover:shadow-2xl" />
+                        alt={post.titulo} class="w-full rounded shadow-xl hover:shadow-2xl" />
                     <div
                         class="flex justify-center items-center opacity-0 bg-gradient-to-t from-gray-800 via-gray-800 to-opacity-30 group-hover:opacity-50 absolute top-0 left-0 h-full w-full">
                     </div>
