@@ -1,5 +1,5 @@
 import React from "react";
-import Gallery from "./Gallery";
+import Posts from './Posts'
 
 const Home = () => {
   return (
@@ -50,7 +50,7 @@ const Home = () => {
       </div>
       <div>
         <div className="flex justify-center align-middle p-2 mb-4 mb-[-80px] mt-[-80px]">
-          <Gallery />
+          <Posts/>
         </div>
       </div>
     </div>

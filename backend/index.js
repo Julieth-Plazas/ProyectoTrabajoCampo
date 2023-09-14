@@ -10,6 +10,7 @@ import multer from 'multer';
 import authRouter from './routes/auth.js';
 import cursoRouter from './routes/course.js';
 import userRouter from './routes/user.js'
+import postRouter from './routes/posts.js'
 
 
 dotenv.config();
@@ -51,6 +52,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRouter);
 app.use('/api/cursos', cursoRouter);
 app.use('/api/users', userRouter)
+app.use('/api/posts', postRouter)
 
 app.listen(PORT, () => {
     connect();

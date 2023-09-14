@@ -32,7 +32,7 @@ const Publications = () => {
         setFormData({ ...formData, rutaImagen: fileUrl });
         console.log(formData)
 
-        const res = await fetch(`${BASE_URL}/users/savePost`, {
+        const res = await fetch(`${BASE_URL}/posts/savePost`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
