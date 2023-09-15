@@ -7,11 +7,11 @@ import GameColors1 from './components/GameEnglish1'
 
 const App = () => {
   return (
-   //<NextUIProvider>
-   //<Layout/>
+   <NextUIProvider>
+   <Layout/>
 
-   //</NextUIProvider>
-    <GameColors1/>
+   </NextUIProvider>
+    // <GameColors1/>
 
   )
 }

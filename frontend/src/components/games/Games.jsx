@@ -8,6 +8,7 @@ import GameSumRes1 from '../GamesSumRes1';
 import MemoramaAnimales from '../MemoriaAnimales';
 import MemoramaNumeros from '../MemoriaNumeros';
 import MemoramaVocal from '../MemoriaVocal';
+import GameEnglish from '../GameEnglish1';
 
 const Games = () => {
   const { id } = useParams();
@@ -64,6 +65,7 @@ const Games = () => {
       {selectedGame === 'memoria animales' && <MemoramaAnimales />}
       {selectedGame === 'memoria numeros' && <MemoramaNumeros />}
       {selectedGame === 'memoria vocales' && <MemoramaVocal />}
+      {selectedGame === 'Ingles' && <GameEnglish />}
     </div>
   );
 };

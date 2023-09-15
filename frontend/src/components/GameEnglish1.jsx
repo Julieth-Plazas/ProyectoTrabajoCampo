@@ -11,7 +11,7 @@ import LionImage from '../assets/Img_English/leon.jpg';
 import OrangeImage from '../assets/Img_English/naranja.jpg';
 import PigImage from '../assets/Img_English/cerdo.jpg';
 
-function App() {
+function GameEnglish() {
   const [targetImage, setTargetImage] = useState('');
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(0);
@@ -104,4 +104,4 @@ function App() {
   );
 }
 
-export default App;
+export default GameEnglish;

@@ -8,7 +8,7 @@ export const cursosYJuegos = [
     },
     {
         name: 'Transicion',
-        games: ['gamsumres1', 'figurasgeometricas1', 'memoria vocales']
+        games: ['gamsumres1', 'figurasgeometricas1', 'memoria vocales', 'Ingles']
     },{
         name: 'Pre-jardin',
         games: ['gamecolors1', 'memoria animales']
