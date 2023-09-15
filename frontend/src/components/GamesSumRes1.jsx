@@ -72,9 +72,9 @@ const GameSumRes1 = () => {
     </span>
 ));
     return (
-        <section className="bg-white flex flex-col items-center justify-center">
-        <div className="flex flex-1 justify-center mt-40">
-            <div className="treasure-hunt-game p-4 text-center bg-yellow-100 rounded-lg">
+        <section className="bg-gradient-to-b from-blue-200 to-blue-400 min-h-screen flex flex-col items-center justify-center">
+        <div className="max-w-screen-md mx-auto p-8 bg-white rounded-lg shadow-lg text-center">
+           <div className="treasure-hunt-game p-4 text-center bg-yellow-100 rounded-lg">
                 <h1 className="text-4xl font-bold mb-4 text-yellow-800">Caza los Tesoros Matemáticos</h1>
                 {!isGameOver ? (
                     <div>

@@ -10,7 +10,11 @@ import Home from '../components/Home'
 import Publications from '../components/Publications'
 import RegisterCourses from '../components/RegisterCourses'
 import AsignCourse from '../components/AsignCourse'
+
 import Games from '../components/games/Games'
+
+
+
 
 
 const Routers = () => {
@@ -26,6 +30,8 @@ const Routers = () => {
         <Route path="/registerCourses" element={<RegisterCourses />} />
         <Route path='/asignarCurso' element={<AsignCourse/>}/>
         <Route path="/curso/:id" element={<Games />} />
+
+
 
         <Route path="*" element={<NotFound />} />
     </Routes>

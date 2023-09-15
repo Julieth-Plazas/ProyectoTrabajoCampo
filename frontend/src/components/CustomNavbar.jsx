@@ -6,7 +6,6 @@ import inicio from '../assets/Inicio.jpg';
 import admision from '../assets/admisiones.png';
 import nosotros from '../assets/nosotros.jpeg';
 import contacto from '../assets/contactanos.jpg';
-import AsignCourse from './AsignCourse.jsx';
 
 
 const CustomNavbar = () => {
@@ -199,7 +198,7 @@ const CustomNavbar = () => {
             </NavbarMenu>
 
         </NextUINavbar>
-        
+
     );
 }
 

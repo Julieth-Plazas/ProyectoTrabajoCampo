@@ -1,81 +1,175 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-
-const shapes = [
-  'círculo',
-  'cuadrado',
-  'triángulo',
-  'rectángulo',
-];
-
-const getRandomShape = () => {
-  const randomIndex = Math.floor(Math.random() * shapes.length);
-  return shapes[randomIndex];
-};
 
 function App() {
-  const [currentShape, setCurrentShape] = useState('');
-  const [selectedShape, setSelectedShape] = useState('');
+  const shapes = [
+    { id: 1, color: 'red', shapeClass: 'Square', style: { width: '32px', height: '32px', margin: '5px' } },
+    { id: 2, color: 'blue', shapeClass: 'Circle', style: { width: '32px', height: '32px', borderRadius: '50%', margin: '5px' } },
+    { id: 3, color: 'green', shapeClass: 'Triangle', style: { width: '0', height: '0', borderTop: '16px solid transparent', borderBottom: '16px solid transparent', borderRight: '16px solid green', margin: '5px' } },
+    { id: 4, color: 'blue', shapeClass: 'Rectangle', style: { width: '48px', height: '32px', margin: '5px' } },
+    { id: 5, color: 'green', shapeClass: 'Square', style: { width: '32px', height: '32px', margin: '5px' } },
+    { id: 6, color: 'red', shapeClass: 'Circle', style: { width: '32px', height: '32px', borderRadius: '50%', margin: '5px' } },
+    { id: 7, color: 'pink', shapeClass: 'Triangle', style: { width: '0', height: '0', borderTop: '16px solid transparent', borderBottom: '16px solid transparent', borderRight: '16px solid pink', margin: '5px' } },
+    { id: 8, color: 'red', shapeClass: 'Rectangle', style: { width: '48px', height: '32px', margin: '5px' } },
+    // Puedes agregar más figuras aquí si lo deseas
+  ];
+
+  const gridSize = 3;
+  const [selectedShape, setSelectedShape] = useState(null);
+  const [gridShapes, setGridShapes] = useState(Array(gridSize).fill(null).map(() => Array(gridSize).fill(null)));
+  const [availableShapes, setAvailableShapes] = useState([...shapes]); // Copia de las formas originales
   const [score, setScore] = useState(0);
+  const [timer, setTimer] = useState(60); // Tiempo en segundos
+  const [gameOver, setGameOver] = useState(false);
+  const [showCongrats, setShowCongrats] = useState(false);
 
   useEffect(() => {
-    generateShape();
-  }, []);
+    if (timer > 0 && !gameOver) {
+      const interval = setInterval(() => {
+        setTimer(timer - 1);
+      }, 1000);
 
-  const generateShape = () => {
-    const newShape = getRandomShape();
-    setCurrentShape(newShape);
-    setSelectedShape('');
+      return () => clearInterval(interval);
+    } else if (timer === 0 && !gameOver) {
+      setGameOver(true);
+      if (score === shapes.length) {
+        setShowCongrats(true);
+      }
+    }
+  }, [timer, gameOver, score, shapes.length]);
+
+  const handleShapeDragStart = (event, shape) => {
+    if (!gameOver || showCongrats) {
+      event.dataTransfer.setData('shape', JSON.stringify(shape));
+    }
   };
 
-  const handleShapeClick = (shape) => {
-    if (shape === currentShape) {
-      setScore(score + 1);
+  const handleShapeDragOver = (event) => {
+    if (!gameOver || showCongrats) {
+      event.preventDefault();
     }
-    generateShape();
+  };
+
+  const handleShapeDrop = (event, rowIndex, columnIndex) => {
+    if (!gameOver || showCongrats) {
+      event.preventDefault();
+      const droppedShape = JSON.parse(event.dataTransfer.getData('shape'));
+      const expectedShapeClass = shapes[rowIndex * gridSize + columnIndex].shapeClass;
+
+      if (droppedShape.color === shapes[rowIndex * gridSize + columnIndex].color && droppedShape.shapeClass === expectedShapeClass) {
+        const newGridShapes = [...gridShapes];
+        newGridShapes[rowIndex][columnIndex] = droppedShape;
+        setGridShapes(newGridShapes);
+
+        const newAvailableShapes = availableShapes.filter((shape) => shape.id !== droppedShape.id);
+        setAvailableShapes(newAvailableShapes);
+
+        setScore(score + 1);
+
+        if (score + 1 === shapes.length) {
+          setGameOver(true);
+          setShowCongrats(true);
+        }
+      } else {
+        alert('Esa no es la figura correcta.');
+      }
+    }
+  };
+
+  const handleCongratsClose = () => {
+    setGridShapes(Array(gridSize).fill(null).map(() => Array(gridSize).fill(null)));
+    setAvailableShapes([...shapes]);
+    setScore(0);
+    setTimer(60);
+    setGameOver(false);
+    setShowCongrats(false);
   };
 
   return (
-    <div className="text-center py-8">
-      <h1 className="text-2xl font-bold mb-4">¡Juego de Figuras Geométricas!</h1>
-      <p>Selecciona la figura:</p>
-      <motion.div
-        key={currentShape}
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 50 }}
-        transition={{ duration: 0.5 }}
-      >
-        <p className="text-4xl font-bold">{currentShape}</p>
-      </motion.div>
-      <div className="mt-4 flex justify-center space-x-4">
-        <button
-          onClick={() => handleShapeClick('círculo')}
-          className={`w-20 h-20 rounded-full bg-blue-500 ${selectedShape === 'círculo' ? 'ring-4 ring-blue-300' : ''}`}
-        >
-          Círculo
-        </button>
-        <button
-          onClick={() => handleShapeClick('cuadrado')}
-          className={`w-20 h-20 bg-green-500 ${selectedShape === 'cuadrado' ? 'ring-4 ring-green-300' : ''}`}
-        >
-          Cuadrado
-        </button>
-        <button
-  onClick={() => handleShapeClick('triángulo')}
-  className={`relative w-20 h-20 overflow-hidden ${selectedShape === 'triángulo' ? 'ring-4 ring-yellow-300' : ''}`}
->
-  <div className="absolute top-0 left-0 w-0 h-0 border-t-10 border-r-10 border-b-10 border-yellow-500"></div>
-</button>
-        <button
-          onClick={() => handleShapeClick('rectángulo')}
-          className={`w-28 h-20 bg-red-500 ${selectedShape === 'rectángulo' ? 'ring-4 ring-red-300' : ''}`}
-        >
-          Rectángulo
-        </button>
+    <section className="bg-gradient-to-b from-blue-200 to-blue-400 min-h-screen flex flex-col items-center justify-center">
+      <div className="max-w-screen-md mx-auto p-8 bg-white rounded-lg shadow-lg text-center">
+        <h1 className="text-4xl font-bold mb-6">Juego de Figuras Geométricas</h1>
+        <div className="grid grid-cols-3 gap-8" style={{ border: '5px solid #ff0000' }}>
+          {shapes.map((shape, index) => (
+            <div
+              key={shape.id}
+              className={`border-4 border-${shape.color}-500`}
+              style={{
+                ...shape.style,
+                margin: '10px',
+              }}
+              onDragOver={handleShapeDragOver}
+              onDrop={(e) => handleShapeDrop(e, Math.floor(index / gridSize), index % gridSize)}
+            >
+              {gridShapes[Math.floor(index / gridSize)][index % gridSize] ? (
+                <div
+                  className={`w-full h-full bg-${shape.color}-500`}
+                  style={{
+                    ...gridShapes[Math.floor(index / gridSize)][index % gridSize].style,
+                    margin: '0',
+                  }}
+                  draggable
+                  onDragStart={(e) => handleShapeDragStart(e, shape)}
+                ></div>
+              ) : (
+                <div
+                  className={`w-full h-full`}
+                  draggable
+                  onDragStart={(e) => handleShapeDragStart(e, shape)}
+                ></div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="mt-6">
+          <p className="text-lg">Arrastra las figuras del mismo color y tipo para llenar las formas.</p>
+        </div>
+        <div className="mt-6">
+          <h2 className="text-2xl font-bold mb-4">Figuras Disponibles</h2>
+          <div className="flex space-x-8">
+            {availableShapes.map((shape) => (
+              <div
+                key={shape.id}
+                className={`w-20 h-20 bg-${shape.color}-500 border-4 border-${shape.color}-500`}
+                style={{
+                  ...shape.style,
+                  margin: '10px',
+                }}
+                draggable
+                onDragStart={(e) => handleShapeDragStart(e, shape)}
+              ></div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-6">
+          <p className="text-lg">Tiempo restante: {timer} segundos</p>
+        </div>
+        <div className="mt-6">
+          <p className="text-lg">Puntuación: {score}</p>
+        </div>
+        {gameOver && !showCongrats && (
+          <button
+            className="mt-8 bg-blue-500 text-white rounded-full px-6 py-3 text-xl hover:bg-blue-600 transition-colors"
+            onClick={handleCongratsClose}
+          >
+            Intentarlo de Nuevo
+          </button>
+        )}
       </div>
-      <p className="text-xl mt-6">Puntuación: {score}</p>
-    </div>
+      {showCongrats && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+            <h2 className="text-4xl font-bold mb-6">¡Felicitaciones! 🎉</h2>
+            <p className="text-xl">Has completado el juego con una puntuación de {score}.</p>
+            <button
+              className="mt-8 bg-blue-500 text-white rounded-full px-6 py-3 text-xl hover:bg-blue-600 transition-colors"
+              onClick={handleCongratsClose}
+            >
+              Continuar
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
   );
 }
 

@@ -64,8 +64,8 @@ function GameColors1() {
 
 
   return (
-    <section class="bg-white flex flex-col items-center justify-center">
-      <div class="flex flex-1 justify-center mt-20">
+    <section className="bg-gradient-to-b from-blue-200 to-blue-400 min-h-screen flex flex-col items-center justify-center">
+          <div className="max-w-screen-md mx-auto p-8 bg-white rounded-lg shadow-lg text-center">
 
         <div className="min-h-screen flex flex-col justify-center items-center">
           <h1 className="text-3xl font-bold mb-4">Colores</h1>

@@ -66,6 +66,9 @@ const PaintGame = () => {
     }
   };
   return (
+    <section className="bg-gradient-to-b from-blue-200 to-blue-400 min-h-screen flex flex-col items-center justify-center">
+    <div className="max-w-screen-md mx-auto p-8 bg-white rounded-lg shadow-lg text-center">
+
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-4xl mb-4">Juego de Pinta el Dibujo</h1>
       <p className="text-xl">Selecciona un color y pinta el dibujo:</p>
@@ -96,6 +99,9 @@ const PaintGame = () => {
         onMouseMove={handleCanvasMouseMove}
       ></canvas>
     </div>
+    </div>
+    </section>
+
   );
 };
 

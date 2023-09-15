@@ -6,6 +6,7 @@ import ingles from "../assets/imagenes_juegos/ingles.jpg"
 import letras from "../assets/imagenes_juegos/letras.gif"
 import matematicas from "../assets/imagenes_juegos/matematicas.jpg"
 import memoria from "../assets/imagenes_juegos/memoria.png"
+import { Link } from "react-router-dom";
 
 const PreJardinGames = () => {
 
