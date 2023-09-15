@@ -4,6 +4,11 @@ import User from "../model/User.js";
 export const asignCurso = async (req, res) => {
     try {
         const user = await User.findById(req.body.userId);
+        console.log('cantidad de cursos')
+        console.log(user.cursos.length)
+        if(user.cursos.length > 0){
+            return res.status(400).json({ success: false, message: "Ya tienes un curso asignado" });
+        }
         user.cursos.push(req.body.cursoId);
         await user.save();
         res.status(200).json({ success: true, data: user , message:"Curso registrado correctamente"});

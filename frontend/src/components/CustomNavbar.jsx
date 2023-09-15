@@ -16,7 +16,7 @@ const CustomNavbar = () => {
     const { user, dispatch } = useContext(AuthContext);
     user ? console.log(user) : console.log("no hay usuario");
 
-
+ 
 
     const handleLogout = () => {
         dispatch({ type: 'LOGOUT' });

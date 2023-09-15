@@ -10,7 +10,7 @@ import ochoImg from "../assets/Img_Numeros/ocho.png";
 import nueveImg from "../assets/Img_Numeros/nueve.png";
 
 
-function Memorama() {
+function MemoramaNumeros() {
   const [numeros, setNumeros] = useState([]);
   const [selecciones, setSelecciones] = useState([]);
   const [emparejados, setEmparejados] = useState([]);
@@ -209,4 +209,4 @@ function Memorama() {
   );
 }
 
-export default Memorama;
+export default MemoramaNumeros;
