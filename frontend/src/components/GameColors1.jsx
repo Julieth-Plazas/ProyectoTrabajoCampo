@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+
+// Importa los archivos de sonido aquí...
+import correctSound from '../assets/sonidos/mario-bros-coin.mp3';
+import incorrectSound from '../assets/sonidos/pacman-dies.mp3';
+
 const colorData = [
   { name: 'Rojo', color: 'red' },
   { name: 'Azul', color: 'blue' },
@@ -9,18 +14,11 @@ const colorData = [
   { name: 'Rosa', color: 'pink' },
   { name: 'Naranja', color: 'orange' },
   { name: 'Marrón', color: 'brown' },
-  { name: 'Cian', color: 'cyan' },
-  { name: 'Magenta', color: 'magenta' },
   { name: 'Negro', color: 'black' },
   { name: 'Gris', color: 'gray' },
   { name: 'Blanco', color: 'white' },
-  { name: 'Turquesa', color: 'turquoise' },
   { name: 'Lima', color: 'lime' },
   { name: 'Violeta', color: 'violet' },
-  { name: 'Aqua', color: 'aqua' },
-  { name: 'Lavanda', color: 'lavender' },
-  { name: 'Dorado', color: 'gold' },
-  { name: 'Plateado', color: 'silver' },
 ];
 
 function chunkArray(arr, chunkSize) {
@@ -30,10 +28,15 @@ function chunkArray(arr, chunkSize) {
   }
   return chunks;
 }
-function GameColors1() {
+
+function GameColors() {
   const [score, setScore] = useState(0);
   const [currentColor, setCurrentColor] = useState({});
   const [gameOver, setGameOver] = useState(false);
+
+  // Crea las instancias de los elementos de audio para respuesta correcta e incorrecta
+  const correctSoundEffect = new Audio(correctSound);
+  const incorrectSoundEffect = new Audio(incorrectSound);
 
   useEffect(() => {
     getNextColor();
@@ -48,8 +51,12 @@ function GameColors1() {
     if (selectedColor === currentColor.color) {
       setScore(score + 1);
       getNextColor();
+      // Reproduce el sonido de respuesta correcta
+      correctSoundEffect.play();
     } else {
       setGameOver(true);
+      // Reproduce el sonido de respuesta incorrecta
+      incorrectSoundEffect.play();
     }
   };
 
@@ -59,14 +66,11 @@ function GameColors1() {
     getNextColor();
   };
 
-  const colorsInRows = chunkArray(colorData, 5);
-
-
+  const colorsInRows = chunkArray(colorData, 3); // Cambia 3 para el número deseado de columnas
 
   return (
     <section className="bg-gradient-to-b from-blue-200 to-blue-400 min-h-screen flex flex-col items-center justify-center">
-          <div className="max-w-screen-md mx-auto p-8 bg-white rounded-lg shadow-lg text-center">
-
+      <div className="max-w-screen-md mx-auto p-8 bg-white rounded-lg shadow-lg text-center">
         <div className="min-h-screen flex flex-col justify-center items-center">
           <h1 className="text-3xl font-bold mb-4">Colores</h1>
           <p className="text-xl mb-2">Puntuación: {score}</p>
@@ -104,4 +108,5 @@ function GameColors1() {
     </section>
   );
 }
-export default GameColors1;
+
+export default GameColors;

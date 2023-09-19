@@ -1,26 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import aciertoSound from '../assets/sonidos/010564339_prev.mp3'; // Reemplaza con la ruta correcta a tu archivo de sonido de acierto
+import errorSound from '../assets/sonidos/megaman-x-error.mp3'; // Reemplaza con la ruta correcta a tu archivo de sonido de error
+import ganarSound from '../assets/sonidos/donkey-kong.mp3'; // Reemplaza con la ruta correcta a tu archivo de sonido de ganar
 
 function App() {
   const shapes = [
-    { id: 1, color: 'red', shapeClass: 'Square', style: { width: '32px', height: '32px', margin: '5px' } },
-    { id: 2, color: 'blue', shapeClass: 'Circle', style: { width: '32px', height: '32px', borderRadius: '50%', margin: '5px' } },
-    { id: 3, color: 'green', shapeClass: 'Triangle', style: { width: '0', height: '0', borderTop: '16px solid transparent', borderBottom: '16px solid transparent', borderRight: '16px solid green', margin: '5px' } },
-    { id: 4, color: 'blue', shapeClass: 'Rectangle', style: { width: '48px', height: '32px', margin: '5px' } },
-    { id: 5, color: 'green', shapeClass: 'Square', style: { width: '32px', height: '32px', margin: '5px' } },
-    { id: 6, color: 'red', shapeClass: 'Circle', style: { width: '32px', height: '32px', borderRadius: '50%', margin: '5px' } },
-    { id: 7, color: 'pink', shapeClass: 'Triangle', style: { width: '0', height: '0', borderTop: '16px solid transparent', borderBottom: '16px solid transparent', borderRight: '16px solid pink', margin: '5px' } },
-    { id: 8, color: 'red', shapeClass: 'Rectangle', style: { width: '48px', height: '32px', margin: '5px' } },
-    // Puedes agregar más figuras aquí si lo deseas
+    { id: 1, color: 'red', shapeClass: 'Square', style: { width: '64px', height: '64px', margin: '2px' } },
+    { id: 2, color: 'blue', shapeClass: 'Circle', style: { width: '64px', height: '64px', borderRadius: '50%', margin: '2px' } },
+    { id: 3, color: 'green', shapeClass: 'Triangle', style: { width: '0', height: '0', borderTop: '32px solid transparent', borderBottom: '32px solid transparent', borderRight: '32px solid green', margin: '2px' } },
+    { id: 4, color: 'blue', shapeClass: 'Rectangle', style: { width: '96px', height: '64px', margin: '2px' } },
+    { id: 5, color: 'green', shapeClass: 'Square', style: { width: '64px', height: '64px', margin: '2px' } },
+    { id: 6, color: 'red', shapeClass: 'Circle', style: { width: '64px', height: '64px', borderRadius: '50%', margin: '2px' } },
+    { id: 7, color: 'pink', shapeClass: 'Triangle', style: { width: '0', height: '0', borderTop: '32px solid transparent', borderBottom: '32px solid transparent', borderRight: '32px solid pink', margin: '2px' } },
+    { id: 8, color: 'red', shapeClass: 'Rectangle', style: { width: '96px', height: '64px', margin: '2px' } },
+    // ... (otros objetos de figura)
   ];
 
   const gridSize = 3;
   const [selectedShape, setSelectedShape] = useState(null);
   const [gridShapes, setGridShapes] = useState(Array(gridSize).fill(null).map(() => Array(gridSize).fill(null)));
-  const [availableShapes, setAvailableShapes] = useState([...shapes]); // Copia de las formas originales
+  const [availableShapes, setAvailableShapes] = useState([...shapes]);
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(60); // Tiempo en segundos
+  const [timer, setTimer] = useState(60);
   const [gameOver, setGameOver] = useState(false);
   const [showCongrats, setShowCongrats] = useState(false);
+
+  const aciertoSoundEffect = useRef(new Audio(aciertoSound));
+  const errorSoundEffect = useRef(new Audio(errorSound));
+  const ganarSoundEffect = useRef(new Audio(ganarSound));
 
   useEffect(() => {
     if (timer > 0 && !gameOver) {
@@ -33,6 +40,7 @@ function App() {
       setGameOver(true);
       if (score === shapes.length) {
         setShowCongrats(true);
+        ganarSoundEffect.current.play(); // Reproduce el sonido de ganar
       }
     }
   }, [timer, gameOver, score, shapes.length]);
@@ -68,9 +76,13 @@ function App() {
         if (score + 1 === shapes.length) {
           setGameOver(true);
           setShowCongrats(true);
+          ganarSoundEffect.current.play(); // Reproduce el sonido de ganar
+        } else {
+          aciertoSoundEffect.current.play(); // Reproduce el sonido de acierto
         }
       } else {
         alert('Esa no es la figura correcta.');
+        errorSoundEffect.current.play(); // Reproduce el sonido de error
       }
     }
   };
@@ -82,20 +94,21 @@ function App() {
     setTimer(60);
     setGameOver(false);
     setShowCongrats(false);
+    ganarSoundEffect.current.pause(); // Detiene el sonido de ganar al hacer clic en "Continuar"
   };
 
   return (
     <section className="bg-gradient-to-b from-blue-200 to-blue-400 min-h-screen flex flex-col items-center justify-center">
       <div className="max-w-screen-md mx-auto p-8 bg-white rounded-lg shadow-lg text-center">
         <h1 className="text-4xl font-bold mb-6">Juego de Figuras Geométricas</h1>
-        <div className="grid grid-cols-3 gap-8" style={{ border: '5px solid #ff0000' }}>
+        <div className="grid grid-cols-4 gap-2" style={{ border: '5px solid #ff0000' }}>
           {shapes.map((shape, index) => (
             <div
               key={shape.id}
               className={`border-4 border-${shape.color}-500`}
               style={{
                 ...shape.style,
-                margin: '10px',
+                margin: '25px',
               }}
               onDragOver={handleShapeDragOver}
               onDrop={(e) => handleShapeDrop(e, Math.floor(index / gridSize), index % gridSize)}
@@ -125,14 +138,14 @@ function App() {
         </div>
         <div className="mt-6">
           <h2 className="text-2xl font-bold mb-4">Figuras Disponibles</h2>
-          <div className="flex space-x-8">
+          <div className="flex space-x-2">
             {availableShapes.map((shape) => (
               <div
                 key={shape.id}
                 className={`w-20 h-20 bg-${shape.color}-500 border-4 border-${shape.color}-500`}
                 style={{
                   ...shape.style,
-                  margin: '10px',
+                  margin: '2px',
                 }}
                 draggable
                 onDragStart={(e) => handleShapeDragStart(e, shape)}
