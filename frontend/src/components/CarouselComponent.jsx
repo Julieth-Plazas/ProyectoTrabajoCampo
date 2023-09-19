@@ -7,15 +7,14 @@ const CarouselComponent = () => {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    try {
+    
       fetch(`${BASE_URL}/posts/getPosts`)
         .then(res => res.json())
         .then(data => setPosts(data.data))
+        .catch(err => console.log(err))
 
-      console.log(posts)
-    } catch (error) {
-      console.log(error)
-    }
+      
+    
 
   }, [])
 

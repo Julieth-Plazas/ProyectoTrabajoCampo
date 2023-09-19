@@ -10,7 +10,12 @@ import Home from '../components/Home'
 import Publications from '../components/Publications'
 import RegisterCourses from '../components/RegisterCourses'
 import AsignCourse from '../components/AsignCourse'
-import PrejardinGames from '../components/PreJardinGames'
+
+import Games from '../components/games/Games'
+
+
+
+
 
 const Routers = () => {
   return (
@@ -24,7 +29,7 @@ const Routers = () => {
         <Route path="/publicar" element={<Publications />} />
         <Route path="/registerCourses" element={<RegisterCourses />} />
         <Route path='/asignarCurso' element={<AsignCourse/>}/>
-
+        <Route path="/curso/:id" element={<Games />} />
 
 
 

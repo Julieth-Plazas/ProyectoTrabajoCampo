@@ -6,7 +6,7 @@ import imgO from "../assets/Img_Vocales/VocalO.jpeg";
 import imgU from "../assets/Img_Vocales/VocalU.jpeg";
 import imgM from "../assets/Img_Vocales/VocalM.jpeg";
 
-function Memorama() {
+function MemoramaVocal() {
   const [numeros, setNumeros] = useState([]);
   const [selecciones, setSelecciones] = useState([]);
   const [emparejados, setEmparejados] = useState([]);
@@ -195,4 +195,4 @@ function Memorama() {
   );
 }
 
-export default Memorama;
+export default MemoramaVocal;

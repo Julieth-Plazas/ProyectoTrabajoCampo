@@ -8,7 +8,11 @@ const App = () => {
    <Layout/>
 
    </NextUIProvider>
+<<<<<<< HEAD
     //<GameColors1/>
+=======
+    // <GameColors1/>
+>>>>>>> 66ff5b7c7f45527c68e3bc08b2cbee426b8fc718
 
   )
 }

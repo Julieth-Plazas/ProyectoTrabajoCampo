@@ -26,6 +26,14 @@ const RegisterCourses = () => {
             const data = await res.json();
             console.log(data);
             setData(data);
+            if(data.success){
+                setFormData({
+                    title:'',
+                    minAge:'',
+                    maxAge:'',
+                    description:''
+                })
+            }
             setAlert(data.message); 
 
             setTimeout(() => {

@@ -4,6 +4,7 @@ const cursoSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
+        unique: true,
         min: 3,
     },
     description: {

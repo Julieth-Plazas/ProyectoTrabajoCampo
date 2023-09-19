@@ -16,7 +16,8 @@ import gameOverSound from '../assets/sonidos/pacman-dies.mp3';
 import backgroundMusic from '../assets/sonidos/fnaf-world-city.mp3';
 import incorrectSound from '../assets/sonidos/megaman-x-error.mp3';
 
-function App() {
+
+function GameEnglish1() {
   const [targetImage, setTargetImage] = useState('');
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(0);
@@ -176,4 +177,4 @@ function App() {
   );
 }
 
-export default App;
+export default GameEnglish1;

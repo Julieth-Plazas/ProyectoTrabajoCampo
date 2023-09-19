@@ -11,7 +11,7 @@ import imgLoro from '../assets/Img_Animales/Loro.jpeg';
 
 
 
-function Memorama() {
+function MemoramaAnimales() {
   const [numeros, setNumeros] = useState([]);
   const [selecciones, setSelecciones] = useState([]);
   const [emparejados, setEmparejados] = useState([]);
@@ -200,4 +200,4 @@ function Memorama() {
   );
 }
 
-export default Memorama;
+export default MemoramaAnimales;

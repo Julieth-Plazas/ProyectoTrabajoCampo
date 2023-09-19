@@ -31,6 +31,8 @@ const AsignCourse = ({ onAsignar, closeModal }) => {
             .catch((error) => {
                 console.error('Error al obtener los cursos:', error);
             });
+
+            
     }, []);
 
     const handleAsignarClick = async (e) => {

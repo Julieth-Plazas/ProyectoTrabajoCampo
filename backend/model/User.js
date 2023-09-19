@@ -40,7 +40,8 @@ const userSchema = new mongoose.Schema({
     },
     cursos: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Curso"
+        ref: "Curso",
+        max:1
     }]
     
 
