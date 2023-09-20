@@ -1,6 +1,7 @@
 import { NextUIProvider } from '@nextui-org/react'
 import React from 'react'
 import Layout from './layout/Layout'
+import GameColors from './components/GameColors1'
 
 const App = () => {
   return (
@@ -8,11 +9,7 @@ const App = () => {
    <Layout/>
 
    </NextUIProvider>
-<<<<<<< HEAD
-    //<GameColors1/>
-=======
-    // <GameColors1/>
->>>>>>> 66ff5b7c7f45527c68e3bc08b2cbee426b8fc718
+    // <GameColors/>
 
   )
 }

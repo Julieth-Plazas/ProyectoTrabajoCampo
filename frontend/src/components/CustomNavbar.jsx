@@ -68,6 +68,9 @@ const CustomNavbar = () => {
             {
                 name:'Asignar curso',
                 path: '/asignarCurso'
+            },{
+                name: 'Registrar Noticia',
+                path: '/registerNotice'
             }
 
         ]

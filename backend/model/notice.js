@@ -1,21 +1,20 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const noticiaSchema = new mongoose.Schema({
-  fechaInicioActual: {
-    type: Date,
-    default: Date.now 
-  },
-  fechaFinal: {
-    type: Date,
-    required: true 
-  },
-  noticia: {
+const noticeSchema = new mongoose.Schema({
+  titulo: {
     type: String,
-    required: true 
+    required: true
+  },
+  descripcion: {
+    type: String,
+    required: true
+  },
+  fecha: {
+    type: Date,
+    required: true
+   
   }
+
 });
 
-
-const Noticia = mongoose.model('Noticia', noticiaSchema);
-
-
+export default mongoose.model('Notice', noticeSchema);
