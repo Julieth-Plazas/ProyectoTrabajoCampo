@@ -12,6 +12,7 @@ import RegisterCourses from '../components/RegisterCourses'
 import AsignCourse from '../components/AsignCourse'
 
 import Games from '../components/games/Games'
+import RegisterNotice from '../components/RegisterNotice'
 
 
 
@@ -30,6 +31,7 @@ const Routers = () => {
         <Route path="/registerCourses" element={<RegisterCourses />} />
         <Route path='/asignarCurso' element={<AsignCourse/>}/>
         <Route path="/curso/:id" element={<Games />} />
+        <Route path='/registerNotice' element={<RegisterNotice/>}/>
 
 
 

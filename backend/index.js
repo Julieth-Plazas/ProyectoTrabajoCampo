@@ -11,6 +11,7 @@ import authRouter from './routes/auth.js';
 import cursoRouter from './routes/course.js';
 import userRouter from './routes/user.js'
 import postRouter from './routes/posts.js'
+import noticeRouter from './routes/notice.js'
 
 
 dotenv.config();
@@ -53,6 +54,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/cursos', cursoRouter);
 app.use('/api/users', userRouter)
 app.use('/api/posts', postRouter)
+app.use('/api/notices', noticeRouter)
 
 app.listen(PORT, () => {
     connect();
