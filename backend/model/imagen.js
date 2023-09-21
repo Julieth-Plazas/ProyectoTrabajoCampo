@@ -14,10 +14,12 @@ const imagenSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  rutaImagen: {
-    type: String,
-    required: true
-  }
+  imagenes: [{
+    
+      type: String,
+      required: true
+    
+  }]
 });
 
 
