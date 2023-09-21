@@ -13,9 +13,10 @@ const CarouselComponent = () => {
   }, [])
 
   return (
-    <div className="flex min-h-screen w-full p-5 flex-wrap bg-white">
+    <div className="flex  w-full p-5 flex-wrap bg-white">
       <div className="w-full ">
         <h1 className="text-3xl leading-tight sm:text-4xl md:text-5xl xl:text-6xl font-bold text-gray-900">Galeria</h1>
+        <p className="text-gray-600 text-sm sm:text-base md:text-lg xl:text-xl mt-2">Galeria de imagenes de la institucion</p>
       </div>
       {posts.length === 0 ? (
         <div className="w-full text-lg text-gray-600 font-medium">

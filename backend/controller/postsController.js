@@ -20,3 +20,22 @@ export const getPosts = async(req, res) =>{
         res.status(500).json({success: false, message: error.message})
     }
 }
+
+export const updatePost = async(req, res) =>{
+    try {
+        const {titulo, descripcion, imagenes} = req.body
+        const postUpdate = await imagen.findByIdAndUpdate(req.params.id, {titulo, descripcion, imagenes})
+        res.status(200).json({success: true, message: "Post updated succesfully",data: postUpdate})
+    } catch (error) {
+        res.status(500).json({success: false, message: error.message})
+    }
+}
+
+export const deletePost = async(req, res) =>{
+    try {
+        const postDelete = await imagen.findByIdAndDelete(req.params.id)
+        res.status(200).json({success: true, message: "Post deleted succesfully",data: postDelete})
+    } catch (error) {
+        res.status(500).json({success: false, message: error.message})
+    }
+}
