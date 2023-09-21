@@ -23,13 +23,32 @@ export const getUsers = async(req, res)=>{
         res.status(200).json({success:true, data: users})
     } catch (error) {
         res.status(500).json({succes: false, message: error.nessage})
-        
+
     }
 }
 export const getUser = async(req, res) =>{
     try {
         const user = await User.findById(req.params.id)
         res.status(200).json({success: true, data: user})
+    } catch (error) {
+        res.status(500).json({success: false, message: error.message})
+    }
+}
+
+export const deleteUser = async(req, res) =>{
+    try {
+        const userDelete = await User.findByIdAndDelete(req.params.id)
+        res.status(200).json({success: true, message: "User deleted succesfully",data: userDelete})
+    } catch (error) {
+        res.status(500).json({success: false, message: error.message})
+    }
+}
+
+export const updateUser = async(req, res) =>{
+    try {
+        const {firstname, lastname, username,email,password} = req.body
+        const userUpdate = await User.findByIdAndUpdate(req.params.id, {firstname, lastname, username,email,password})
+        res.status(200).json({success: true, message: "User updated succesfully",data: userUpdate})
     } catch (error) {
         res.status(500).json({success: false, message: error.message})
     }
