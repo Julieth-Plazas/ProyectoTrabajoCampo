@@ -1,10 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import circuloImage from "../assets/Img_FigurasGeo/circulo.jpg";
-import trianguloImage from "../assets/Img_FigurasGeo/triangulo.jpg";
-import cuadradoImage from "../assets/Img_FigurasGeo/cuadrado.jpg";
-import rectanguloImage from "../assets/Img_FigurasGeo/rectangulo.jpg";
-import estrellaImage from "../assets/Img_FigurasGeo/estrella.png";
-import ovaloImage from "../assets/Img_FigurasGeo/ovalo.jpg";
 
 // Importar sonidos
 import backgroundMusic from "../assets/sonidos/angry-birds-videojuegos-.mp3";
@@ -115,8 +109,11 @@ const GameSumRes1 = () => {
         setRemainingAttempts(8);
         generateRandomNumbers();
         setAnswer('');
-    };
 
+        // Vuelve a iniciar la música de fondo
+        backgroundAudio.currentTime = 0;
+        startBackgroundMusic();
+    };
     // Generar un array de estrellas en función de la cantidad de tesoros encontrados
     const stars = Array.from({ length: treasuresFound }, (_, index) => (
         <span key={index} role="img" aria-label="star">
