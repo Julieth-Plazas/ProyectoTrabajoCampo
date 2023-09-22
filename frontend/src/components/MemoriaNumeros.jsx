@@ -8,6 +8,9 @@ import seisImg from "../assets/Img_Numeros/seis.png";
 import sieteImg from "../assets/Img_Numeros/siete.png";
 import ochoImg from "../assets/Img_Numeros/ocho.png";
 import nueveImg from "../assets/Img_Numeros/nueve.png";
+import MarioSoud from '../assets/sonidos/mario.mp3';
+import finalSound from '../assets/sonidos/ganar.mp3';
+
 
 
 function MemoramaNumeros() {
@@ -80,19 +83,30 @@ function MemoramaNumeros() {
 
   const procesarSelecciones = (selected) => {
     setTimeout(() => {
-      if (numeros[selected[0]] === numeros[selected[1]]) {
-        setEmparejados((prevEmparejados) => {
-          const nuevosEmparejados = [...prevEmparejados, ...selected];
-          if (nuevosEmparejados.length === numeros.length) {
-            setJuegoTerminado(true); // Actualiza el estado cuando todas las tarjetas estén emparejadas
-          }
-          return nuevosEmparejados;
-        });
-        setPuntuacion((prevPuntuacion) => prevPuntuacion + 10);
-      }
-      setSelecciones([]);
+        if (numeros[selected[0]] === numeros[selected[1]]) {
+            
+            // Reproduce el sonido de Mario cuando se encuentra una pareja
+            const audio = new Audio(MarioSoud);
+            audio.play();
+
+            setEmparejados((prevEmparejados) => {
+                const nuevosEmparejados = [...prevEmparejados, ...selected];
+                if (nuevosEmparejados.length === numeros.length) {
+                    // Reproduce el sonido final cuando se hayan encontrado todas las tarjetas
+                    const audioFinal = new Audio(finalSound);
+                    audioFinal.play();
+                    
+                    setJuegoTerminado(true); // Actualiza el estado cuando todas las tarjetas estén emparejadas
+                }
+                return nuevosEmparejados;
+            });
+            setPuntuacion((prevPuntuacion) => prevPuntuacion + 10);
+        }
+        setSelecciones([]);
     }, 1000);
-  };
+};
+
+
 
   const [juegoTerminado, setJuegoTerminado] = useState(false);
 
