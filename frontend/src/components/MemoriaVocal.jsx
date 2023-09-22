@@ -5,8 +5,9 @@ import imgI from "../assets/Img_Vocales/VocalI.jpeg";
 import imgO from "../assets/Img_Vocales/VocalO.jpeg";
 import imgU from "../assets/Img_Vocales/VocalU.jpeg";
 import imgM from "../assets/Img_Vocales/VocalM.jpeg";
-import MarioSoud from '../assets/sonidos/marioNumeros.mp3';
 import finalSound from '../assets/sonidos/ganar.mp3';
+import additionSound from "../assets/sonidos/donkey-kong-coin.mp3"; // Sonido de suma
+
 
 
 
@@ -73,7 +74,7 @@ function MemoramaVocal() {
         if (numeros[selected[0]] === numeros[selected[1]]) {
             
             // Reproduce el sonido de Mario cuando se encuentra una pareja
-            const audio = new Audio(MarioSoud);
+            const audio = new Audio(additionSound);
             audio.play();
 
             setEmparejados((prevEmparejados) => {

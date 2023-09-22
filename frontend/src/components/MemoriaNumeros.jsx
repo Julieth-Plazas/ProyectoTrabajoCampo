@@ -8,7 +8,7 @@ import seisImg from "../assets/Img_Numeros/seis.png";
 import sieteImg from "../assets/Img_Numeros/siete.png";
 import ochoImg from "../assets/Img_Numeros/ocho.png";
 import nueveImg from "../assets/Img_Numeros/nueve.png";
-import MarioSoud from '../assets/sonidos/mario.mp3';
+import additionSound from "../assets/sonidos/donkey-kong-coin.mp3"; // Sonido de suma
 import finalSound from '../assets/sonidos/ganar.mp3';
 
 
@@ -86,7 +86,7 @@ function MemoramaNumeros() {
         if (numeros[selected[0]] === numeros[selected[1]]) {
             
             // Reproduce el sonido de Mario cuando se encuentra una pareja
-            const audio = new Audio(MarioSoud);
+            const audio = new Audio(additionSound);
             audio.play();
 
             setEmparejados((prevEmparejados) => {
