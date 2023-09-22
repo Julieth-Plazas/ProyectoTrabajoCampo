@@ -10,6 +10,9 @@ const ProductTable = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [updatedUser, setUpdatedUser] = useState(null);
 
+  const {idUserDelete, setIdUserDelete} = useState(null);
+  
+
 
   useEffect(() => {
     fetch(`${BASE_URL}/users`)
@@ -36,17 +39,15 @@ const ProductTable = () => {
 
 
 
-  const handleDeleteClick = () => {
-    const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar el usuario?');
-    console.log(user._id);
+  const handleDeleteClick = (userId) => {
+    const confirmDelete = window.confirm('¿Estás seguro de que quieres eliminar este usuario?');
+    
     if (confirmDelete) {
-      fetch(`${BASE_URL}/users/deleteUser/${user._id}`, {
+      fetch(`${BASE_URL}/users/deleteUser/${userId}`, {
 
         method: 'DELETE',
 
-      })
-
-        .then((response) => {
+      }).then((response) => {
           if (!response.ok) {
             throw new Error(`Error de red: ${response.status}`);
           }
@@ -54,6 +55,7 @@ const ProductTable = () => {
           return response.json();
         })
         .then((data) => {
+          alert('user deleted successfully')
           alert(data.message);
           console.log('Usuario eliminado con éxito:', data);
 
@@ -87,39 +89,51 @@ const ProductTable = () => {
               Email
             </th>
             <th scope="col" className="px-6 py-3">
+              Curso
+            </th>
+            <th scope="col" className="px-6 py-3">
               Action
             </th>
           </tr>
         </thead>
         <tbody>
-          {user.map(users => (
+            {user.map(users => (
+              
 
-            <tr id={users.id} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {users.firstname}
-              </th>
-              <td className="px-6 py-4">
-                {users.lastname}
-              </td>
-              <td className="px-6 py-4">
-                {users.username}
-              </td>
-              <td className="px-6 py-4">
-                {users.email}
-              </td>
-              <td className="px-6 py-4">
+              <tr id={users.id} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {users.firstname}
+                </th>
+                <td className="px-6 py-4">
+                  {users.lastname}
+                </td>
+                <td className="px-6 py-4">
+                  {users.username}
+                </td>
+                <td className="px-6 py-4">
+                  {users.email}
+                </td>
+                {
+                  users.cursos.map((curso, index) => (
+                    <td key={`user-course-${index}`} className="px-6 py-4">
+                      {curso.title ? curso.title : 'Sin curso'}
+                    </td>
+                  ))
+                }
+                
+                <td className="px-6 py-4">
 
-                <button onClick={openEditModal} className="cursor-pointer">
-                  <img src={modificar} alt="Edit" style={{ height: '30px', width: '30px' }} />
-                </button>
-                <button onClick={handleDeleteClick} className="cursor-pointer ml-2">
-                  <img src={eliminar} alt="Delete" style={{ height: '30px', width: '30px' }} />
-                </button>
+                  <button onClick={openEditModal} className="cursor-pointer">
+                    <img src={modificar} alt="Edit" style={{ height: '30px', width: '30px' }} />
+                  </button>
+                  <button onClick={()=> handleDeleteClick(users._id)}  className="cursor-pointer ml-2">
+                    <img src={eliminar} alt="Delete" style={{ height: '30px', width: '30px' }} />
+                  </button>
 
 
-              </td>
-            </tr>
-          ))}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

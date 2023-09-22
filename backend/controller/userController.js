@@ -19,7 +19,7 @@ export const asignCurso = async (req, res) => {
 export const getUsers = async(req, res)=>{
 
     try {
-        const users = await User.find()
+        const users = await User.find().populate('cursos')
         res.status(200).json({success:true, data: users})
     } catch (error) {
         res.status(500).json({succes: false, message: error.nessage})

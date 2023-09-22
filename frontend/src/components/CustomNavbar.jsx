@@ -71,7 +71,12 @@ const CustomNavbar = () => {
             },{
                 name: 'Registrar Noticia',
                 path: '/registerNotice'
+            },
+            {
+                name: 'Listar docentes',
+                path: '/listarDocentes'
             }
+
 
         ]
         : user && user.cursos
