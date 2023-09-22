@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import register from '../assets/register.avif'
+import React, { useState, useRef } from 'react'
+import register from '../assets/maestra.png'
 import { BASE_URL } from '../utils/constants';
-const Register = () => {
 
+
+const Register = () => {
 
   const [alert, setAlert] = useState(null);
   const [formData, setFormData] = useState({
@@ -13,11 +14,12 @@ const Register = () => {
     password:''
   });
   const [data, setData] = useState({})
+  const [showPassword, setShowPassword] = useState(false);
 
+  const formRef = useRef(null); // <-- Aquí está nuestra ref
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
     try {
       const res = await fetch(`${BASE_URL}/auth/register`, {
           method: 'POST',
@@ -27,21 +29,23 @@ const Register = () => {
           body: JSON.stringify(formData)
       });
       const data = await res.json();
-      console.log(data);
       setData(data);
-      setAlert(data.message); // Always set the alert message
+      setAlert(data.message);
 
       setTimeout(() => {
           setAlert(null);
       }, 3000);
-      
 
-  } catch (error) {
+      if (data.success) {
+          formRef.current.reset(); // <-- Usamos la ref para resetear el formulario
+      }
+
+    } catch (error) {
       setAlert(error.message);
       setTimeout(() => {
           setAlert(null);
       }, 3000);
-  }
+    }
   }
 
   return (
@@ -67,15 +71,29 @@ const Register = () => {
           <h2 class="font-bold text-2xl text-teal-700">Registrar</h2>
 
 
-          <form class="flex mt-3 flex-col gap-4">
+          <form ref={formRef} class="flex mt-3 flex-col gap-4"> 
             <input class="p-2  rounded-xl border" type="text" name="firstname" placeholder="Nombre"  required onChange={(e) => {setFormData({...formData, firstname: e.target.value })}}/>
             <input class="p-2  rounded-xl border" type="text" name="lastname" placeholder="Apellido" required onChange={(e) => {setFormData({...formData, lastname: e.target.value})}}/>
             <input class="p-2  rounded-xl border" type="text" name="username" placeholder="Usuario" required onChange={(e)=>{setFormData({...formData, username:e.target.value})}}/>
             <input class="p-2  rounded-xl border" type="email" name="email" placeholder="Email" required onChange={(e) => {setFormData({...formData, email:e.target.value})}}/>
 
             <div class="relative">
-              <input class="p-2 rounded-xl border w-full" type="password" name="password" placeholder="Password" required onChange={(e)=>{setFormData({...formData, password:e.target.value})}}/>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2" viewBox="0 0 16 16">
+      <input 
+        class="p-2 rounded-xl border w-full" 
+        type={showPassword ? "text" : "password"} 
+        name="password" 
+        placeholder="Password" 
+        required 
+        onChange={(e)=>{setFormData({...formData, password:e.target.value})}}
+      />
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="16" height="16" 
+        fill="gray" 
+        class="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2" 
+        viewBox="0 0 16 16"
+        onClick={() => setShowPassword(!showPassword)}
+      >
                 <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                 <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
               </svg>

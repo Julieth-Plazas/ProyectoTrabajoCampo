@@ -7,10 +7,10 @@ import CrudTable from './components/MemoriaVocal'
 
 const App = () => {
   return (
-  // <NextUIProvider>
-    //   <Layout/>
-   //</NextUIProvider>
-   <CrudTable/>
+  <NextUIProvider>
+      <Layout/>
+   </NextUIProvider>
+  //  <CrudTable/>
 
   )
 }
