@@ -3,7 +3,6 @@ import CarouselComponent from "./CarouselComponent";
 import { BASE_URL } from "../utils/constants";
 import CardNotice from "./notice/CardNotice";
 
-
 const Home = () => {
   const [noticias, setNoticias] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -40,14 +39,15 @@ const Home = () => {
   }, []);
 
   const closeModal = () => {
-    console.log('cerra modal')
+    console.log("cerra modal");
     setSelectedNoticia(null);
     setModalVisible(false);
   };
   return (
-    <div className="flex min-h-screen w-full flex-wrap content-center justify-center p-5 bg-white" data-theme="cupcake">
-
-
+    <div
+      className="flex min-h-screen w-full flex-wrap content-center justify-center p-5 bg-white"
+      data-theme="cupcake"
+    >
       <div className="hero-content flex-col lg:flex-row">
         <div className="mx-auto lg:max-w-7xl w-full   flex flex-col lg:flex-row">
           <div
@@ -71,7 +71,12 @@ const Home = () => {
               constructivista en el entendido que el ser humano se forma y
               construye su futuro desde su nacimiento, en la medida que los
               ambientes donde crece sean favorables y le permitan potenciar se
-              en todas sus etapas sin forzar procesos.
+              en todas sus etapas sin forzar procesos. La formación en valores
+              desde los primeros años de vida, permite en el niño y la niña el
+              desarrollo autónomo de su identidad, de esta manera a partir de la
+              experiencia cotidiana comprende que cada una de sus acciones
+              produce circunstancias asertivas o negativas que necesariamente
+              deben ser asumidas.
             </p>
           </div>
           <div className="flex flex-1 lg:w-1/2 lg:h-auto relative lg:max-w-none lg:mx-0 mx-auto max-w-3xl">
@@ -86,11 +91,8 @@ const Home = () => {
         </div>
       </div>
 
-
-      <div className="container mx-auto md:py-12 lg:px-20 md:px-6 " >
-
+      <div className="container mx-auto md:py-12 lg:px-20 md:px-6 ">
         <CarouselComponent />
-
       </div>
       {modalVisible && selectedNoticia && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
@@ -105,7 +107,6 @@ const Home = () => {
           </div>
         </div>
       )}
-
     </div>
   );
 };
