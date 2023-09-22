@@ -8,6 +8,14 @@ import imgElefante from '../assets/Img_Animales/Elefante.jpeg';
 import imgPanda from '../assets/Img_Animales/Panda.jpeg';
 import imgPerro from '../assets/Img_Animales/Perro.jpeg';
 import imgLoro from '../assets/Img_Animales/Loro.jpeg';
+import leonSound from '../assets/sonidos/LION1.mp3';
+import BearSound from '../assets/sonidos/BEAR.mp3';
+import ElefanteSound from '../assets/sonidos/elefante.mp3';
+import loroSound from '../assets/sonidos/loro.mp3';
+import PerroSound from '../assets/sonidos/perro.mp3';
+import MonoSound from '../assets/sonidos/Mono.mp3';
+import PinguinoSound from '../assets/sonidos/pinguino.mp3';
+import rabbitSound from '../assets/sonidos/rabbit.mp3';
 
 
 
@@ -69,21 +77,65 @@ function MemoramaAnimales() {
     }
   };
 
+  // const procesarSelecciones = (selected) => {
+  //   setTimeout(() => {
+  //     if (numeros[selected[0]] === numeros[selected[1]]) {
+  //       setEmparejados((prevEmparejados) => {
+  //         const nuevosEmparejados = [...prevEmparejados, ...selected];
+  //         if (nuevosEmparejados.length === numeros.length) {
+  //           setJuegoTerminado(true); // Actualiza el estado cuando todas las tarjetas estén emparejadas
+  //         }
+  //         return nuevosEmparejados;
+  //       });
+  //       setPuntuacion((prevPuntuacion) => prevPuntuacion + 10);
+  //     }
+  //     setSelecciones([]);
+  //   }, 1000);
+  // };
   const procesarSelecciones = (selected) => {
     setTimeout(() => {
-      if (numeros[selected[0]] === numeros[selected[1]]) {
-        setEmparejados((prevEmparejados) => {
-          const nuevosEmparejados = [...prevEmparejados, ...selected];
-          if (nuevosEmparejados.length === numeros.length) {
-            setJuegoTerminado(true); // Actualiza el estado cuando todas las tarjetas estén emparejadas
-          }
-          return nuevosEmparejados;
-        });
-        setPuntuacion((prevPuntuacion) => prevPuntuacion + 10);
-      }
-      setSelecciones([]);
+        if (numeros[selected[0]] === numeros[selected[1]]) {
+            
+            // Determinar qué sonido reproducir basado en el animal
+            let animalSound = null;
+
+            if (numeros[selected[0]] === imgLeon) {
+                animalSound = leonSound;
+            } else if (numeros[selected[0]] === imgPanda) {
+                animalSound = BearSound;
+            } else if (numeros[selected[0]] === imgElefante) {
+                animalSound = ElefanteSound;
+            } else if (numeros[selected[0]] === imgLoro) {
+                animalSound = loroSound;
+            } else if (numeros[selected[0]] === imgPerro) {
+                animalSound = PerroSound;
+            } else if (numeros[selected[0]] === imgMono) {
+                animalSound = MonoSound;
+            } else if (numeros[selected[0]] === imgPin) {
+                animalSound = PinguinoSound;
+            } else if (numeros[selected[0]] === imgConejo) {
+                animalSound = rabbitSound;
+            }
+
+            // Si hay un sonido que reproducir, hazlo
+            if (animalSound) {
+                const audio = new Audio(animalSound);
+                audio.play();
+            }
+
+            setEmparejados((prevEmparejados) => {
+                const nuevosEmparejados = [...prevEmparejados, ...selected];
+                if (nuevosEmparejados.length === numeros.length) {
+                    setJuegoTerminado(true);
+                }
+                return nuevosEmparejados;
+            });
+            setPuntuacion((prevPuntuacion) => prevPuntuacion + 10);
+        }
+        setSelecciones([]);
     }, 1000);
-  };
+};
+
 
   const [juegoTerminado, setJuegoTerminado] = useState(false);
 
