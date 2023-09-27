@@ -22,7 +22,7 @@ const RegisterNotice = () => {
             const data = await res.json();
             console.log(data);
             setData(data);
-            setAlert(data.message); 
+            setAlert(data.message);
 
             setTimeout(() => {
                 setAlert(null);
@@ -31,10 +31,10 @@ const RegisterNotice = () => {
                 setTitulo('');
             setContenido('');
             setFecha('');
-
+            window.location.href = "/";
 
             }
-            
+
         } catch (error) {
             setAlert(error.message);
             setTimeout(() => {
@@ -43,7 +43,7 @@ const RegisterNotice = () => {
         }
 
 
-        
+
     };
 
     return (
