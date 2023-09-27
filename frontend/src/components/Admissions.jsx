@@ -1,31 +1,22 @@
 import React from "react";
-import inscripcion from "../assets/imagenes/ImagenInscripciones.jpg";
-import inscripcion2 from "../assets/imagenes/ImagenIns2.jpg";
+import inscripcion from "../assets/Matriculas.jpg";
 
 const Admissions = () => {
   return (
-    <section class="relative pt-8 lg:pt-4 pb-32 bg-white">
+    <section class="relative pt-8 lg:pt-4 pb-16 bg-white"> 
       <div class="flex flex-1 justify-center">
         <div class="lg:w-full lg:mx-20 relative">
-          <div class="absolute inset-2 mt-10 mb-10 bg-white opacity-50 rounded-2xl"></div>
           <img
             src={inscripcion}
-            alt="VISION"
+            alt="Matriculas"
             loading="lazy"
-            class="border rounded-2xl mt-6 mb-6 w-3/4 lg:w-full"
+            class="border rounded-2xl w-2/3 mx-auto mt-4 mb-4"
           />
-          <div class="absolute inset-2 mt-10 mb-10">
-            <img
-              src={inscripcion2}
-              alt="Segunda Imagen"
-              class=" h-full object-cover rounded-2xl"
-            />
-          </div>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-10 mt-10">
-      <div className="max-w-xl border rounded-2xl shadow-sm flex flex-col items-center p-4 space-y-4 transform translate-x-20">
+        <div className="max-w-xl border rounded-2xl shadow-sm flex flex-col items-center p-4 space-y-4 transform translate-x-20">
           <h3 className="text-3xl font-semibold leading-relaxed text-gray-900" style={{ color: "green" }}>
             Requisitos de Matricula
           </h3>
@@ -43,8 +34,8 @@ const Admissions = () => {
           </ul>
         </div>
 
-        <div>
-        <div className="max-w-xl ml-20 border rounded-2xl shadow-sm flex flex-col items-center p-4 space-y-4 mb-10">
+        <div className="ml-4">
+          <div className="max-w-xl border rounded-2xl shadow-sm flex flex-col items-center p-4 space-y-4 mb-10">
             <h3 className="text-3xl font-semibold leading-relaxed text-gray-900" style={{ color: "green" }}>
               Calendario
             </h3>
@@ -56,7 +47,7 @@ const Admissions = () => {
             </ul>
           </div>
 
-          <div className="max-w-xl ml-20 border rounded-2xl shadow-sm flex flex-col items-center p-4 space-y-4 mb-10">
+          <div className="max-w-xl border rounded-2xl shadow-sm flex flex-col items-center p-4 space-y-4">
             <h3 className="text-3xl font-semibold leading-relaxed text-gray-900" style={{ color: "green" }}>
               Recesos Académicos
             </h3>
