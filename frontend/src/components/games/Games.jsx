@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { BASE_URL, buscarJuegosPorCurso } from '../../utils/constants';
 import Figuras_Geometricas1 from '../Figuras_Geometricas1';
+import Figuras_Geometricas2 from '../Figuras_Geometricas2';
 import GameColors2 from '../GameColors2';
 import GameColors1 from '../GameColors1'
 import GameSumRes1 from '../GamesSumRes1';
@@ -35,7 +36,7 @@ const Games = () => {
   return (
     <div className='p-4'>
       <h1 className='text-3xl font-bold mt-4 mb-6'>Curso: {curso.title}</h1>
-      
+
       <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="gameSelect">
           Seleccionar juego:
@@ -58,7 +59,8 @@ const Games = () => {
       {selectedGame && (
         <p className="text-lg">Juego seleccionado: {selectedGame}</p>
       )}
-      {selectedGame === 'figurasgeometricas2' && <Figuras_Geometricas1 />}
+      {selectedGame === 'figurasgeometricas1' && <Figuras_Geometricas1 />}
+      {selectedGame === 'figurasgeometricas2' && <Figuras_Geometricas2 />}
       {selectedGame === 'gamecolors2' && <GameColors2 />}
       {selectedGame === 'gamecolors1' && <GameColors1/> }
       {selectedGame === 'gamsumres1' && <GameSumRes1 />}

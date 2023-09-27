@@ -13,7 +13,7 @@ import backgroundMusic from "../assets/sonidos/ringtones-baby-shark-dodo.mp3";
 import congratsSound from "../assets/sonidos/text-message.mp3";
 
 
-const App = () => {
+const FigurasGeometricas2 = () => {
   const [cards, setCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
   const [solvedPairs, setSolvedPairs] = useState([]);
@@ -234,4 +234,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default FigurasGeometricas2;
