@@ -46,8 +46,8 @@ export const deleteUser = async(req, res) =>{
 
 export const updateUser = async(req, res) =>{
     try {
-        const {firstname, lastname, username,email,password} = req.body
-        const userUpdate = await User.findByIdAndUpdate(req.params.id, {firstname, lastname, username,email,password})
+        const {firstname, lastname,password} = req.body
+        const userUpdate = await User.findByIdAndUpdate(req.params.id, {firstname, lastname,password})
         res.status(200).json({success: true, message: "User updated succesfully",data: userUpdate})
     } catch (error) {
         res.status(500).json({success: false, message: error.message})

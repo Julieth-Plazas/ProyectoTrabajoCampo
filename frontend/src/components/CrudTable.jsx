@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import eliminar from '../assets/imagenes/eliminar.png'
 import modificar from '../assets/imagenes/modificar.jpg'
 import { BASE_URL } from '../utils/constants';
+import Modal from 'react-modal'
 
 
 const ProductTable = () => {
@@ -21,9 +22,7 @@ const ProductTable = () => {
       .catch(err => console.log(err))
   }, [])
 
-  const openEditModal = () => {
-    setIsEditModalOpen(true);
-  };
+  
 
 
   const closeEditModal = () => {
@@ -33,10 +32,36 @@ const ProductTable = () => {
 
   const handleEditClick = (updatedUserData) => {
 
-    console.log('Publicación actualizada:', updatedUserData);
+    console.log('User:', updatedUserData);
     setUpdatedUser(updatedUserData);
+    setIsEditModalOpen(true)
   };
 
+  const handleUpdateUser = () => {
+    
+    fetch(`${BASE_URL}/users/updateUser/${updatedUser._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedUser), 
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error de red: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        
+        alert('Usuario actualizado correctamente');
+        closeEditModal(); 
+      })
+      .catch((error) => {
+        console.error('Error al actualizar el usuario:', error.message);
+      });
+  };
+  
 
 
   const handleDeleteClick = (userId) => {
@@ -123,7 +148,7 @@ const ProductTable = () => {
                 
                 <td className="px-6 py-4">
 
-                  <button onClick={openEditModal} className="cursor-pointer">
+                  <button onClick={()=>{handleEditClick(users)}} className="cursor-pointer">
                     <img src={modificar} alt="Edit" style={{ height: '30px', width: '30px' }} />
                   </button>
                   <button onClick={()=> handleDeleteClick(users._id)}  className="cursor-pointer ml-2">
@@ -137,6 +162,172 @@ const ProductTable = () => {
         </tbody>
       </table>
     </div>
+    {
+      updatedUser ? <Modal
+      isOpen={isEditModalOpen}
+      onRequestClose={closeEditModal}
+      contentLabel='Editar usuario'
+      className="fixed inset-0 flex items-center justify-center z-50"
+      overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+  
+      >
+        <div className='bg-white p-4 max-w-md rounded-lg'>
+          <h2 className='text-2xl font-semibold'>
+            Editar usuario
+          </h2>
+          <form>
+          <div className="mb-4">
+            <label htmlFor="nombre" className="block text-gray-600 font-medium">
+              Nombre
+            </label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              
+              className="w-full p-2 border border-gray-300 rounded"
+              
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="apellido" className="block text-gray-600 font-medium">
+              Apellido
+            </label>
+            <input
+              type="text"
+              id="apellido"
+              name="apellido"
+              
+              className="w-full p-2 border border-gray-300 rounded"
+               
+              />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="usuario" className="block text-gray-600 font-medium">
+              Usuario
+            </label>
+            <input
+              type="text"
+              id="usuario"
+              name="usuario"
+              value={updatedUser.username}
+              className="w-full p-2 border border-gray-300 rounded"
+              readOnly 
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="correo" className="block text-gray-600 font-medium">
+              Correo
+            </label>
+            <input
+              type="email"
+              id="correo"
+              name="correo"
+              value={updatedUser.email}
+              className="w-full p-2 border border-gray-300 rounded"
+              readOnly 
+            />
+          </div>
+          <div className="mb-4">
+            <button
+              type="button"
+              className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+              onClick={handleUpdateUser}
+            >
+              Actualizar Usuario
+            </button>
+          </div>
+        </form>
+        <button
+            className="mt-4 py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+            onClick={()=> setIsEditModalOpen(false)}
+          >
+            Cerrar
+          </button>
+
+        </div>
+  
+      </Modal>: null
+    }
+    {/* <Modal
+    isOpen={isEditModalOpen}
+    onRequestClose={closeEditModal}
+    contentLabel='Editar usuario'
+    className="fixed inset-0 flex items-center justify-center z-50"
+    overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+
+    >
+      <div className='bg-white p-4 max-w-md rounded-lg'>
+        <h2 className='text-2xl font-semibold'>
+          Editar usuario
+        </h2>
+        <form>
+        <div className="mb-4">
+          <label htmlFo r="nombre" className="block text-gray-600 font-medium">
+            Nombre
+          </label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            value={updatedUser.firstname}
+            className="w-full p-2 border border-gray-300 rounded"
+            readOnly // Campo de solo lectura
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="apellido" className="block text-gray-600 font-medium">
+            Apellido
+          </label>
+          <input
+            type="text"
+            id="apellido"
+            name="apellido"
+            value={updatedUser.lastname}
+            className="w-full p-2 border border-gray-300 rounded"
+            readOnly // Campo de solo lectura
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="usuario" className="block text-gray-600 font-medium">
+            Usuario
+          </label>
+          <input
+            type="text"
+            id="usuario"
+            name="usuario"
+            value={updatedUser.username}
+            className="w-full p-2 border border-gray-300 rounded"
+            readOnly // Campo de solo lectura
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="correo" className="block text-gray-600 font-medium">
+            Correo
+          </label>
+          <input
+            type="email"
+            id="correo"
+            name="correo"
+            value={updatedUser.email}
+            className="w-full p-2 border border-gray-300 rounded"
+            readOnly // Campo de solo lectura
+          />
+        </div>
+        <div className="mb-4">
+          <button
+            type="button"
+            className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+            onClick={handleUpdateUser}
+          >
+            Actualizar Usuario
+          </button>
+        </div>
+      </form>
+
+      </div>
+
+    </Modal> */}
     </section>
   );
 }

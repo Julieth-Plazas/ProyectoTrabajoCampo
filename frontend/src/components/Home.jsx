@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CarouselComponent from "./CarouselComponent";
 import { BASE_URL } from "../utils/constants";
 import CardNotice from "./notice/CardNotice";
-
+import Modal from "react-modal";
 
 const Home = () => {
   const [noticias, setNoticias] = useState([]);
@@ -15,7 +15,6 @@ const Home = () => {
         const res = await fetch(`${BASE_URL}/notices`);
         const data = await res.json();
         setNoticias(data.data);
-        console.log(data.data);
       } catch (error) {
         console.log(error);
       }
@@ -23,24 +22,29 @@ const Home = () => {
     getNoticias();
   }, []);
 
-  const today = new Date();
-  const twoDaysFromNow = new Date(today);
-  twoDaysFromNow.setDate(today.getDate() + 2);
-
-  const noticiasProximas = noticias.filter((noticia) => {
-    const noticiaFecha = new Date(noticia.fecha);
-    return noticiaFecha >= today && noticiaFecha <= twoDaysFromNow;
-  });
-
   useEffect(() => {
-    if (noticiasProximas.length > 0) {
-      setSelectedNoticia(noticiasProximas[0]);
+    const currentDate = new Date();
+    console.log(`currentDate: ${currentDate}`)
+    const tomorrow = new Date(currentDate);
+    tomorrow.setDate(currentDate.getDate() + 1);
+    const dayAfterTomorrow = new Date(currentDate);
+    dayAfterTomorrow.setDate(currentDate.getDate() + 2);
+
+    console.log(`tomorrow: ${tomorrow}, dayAfterTomorrow: ${dayAfterTomorrow}`)
+
+    const noticiasEnRango = noticias.filter((noticia) => {
+      console.log(`noticia.fecha: ${noticia.fecha}`)
+      const noticiaDate = new Date(noticia.fecha);
+      console.log(`noticiaDate: ${noticiaDate}`)
+      return noticiaDate >= currentDate && noticiaDate <= tomorrow
+    });
+    console.log(`noticiasEnRango: ${noticiasEnRango}`)
+    if (noticiasEnRango.length > 0) {
       setModalVisible(true);
     }
-  }, []);
+  }, [noticias]);
 
   const closeModal = () => {
-    console.log('cerra modal')
     setSelectedNoticia(null);
     setModalVisible(false);
   };
@@ -92,7 +96,8 @@ const Home = () => {
         <CarouselComponent />
 
       </div>
-      {modalVisible && selectedNoticia && (
+
+      {/* {modalVisible && selectedNoticia && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <button
@@ -104,7 +109,27 @@ const Home = () => {
             <CardNotice noticia={selectedNoticia} />
           </div>
         </div>
-      )}
+      )} */}
+      <Modal
+        isOpen={modalVisible}
+        onRequestClose={closeModal}
+        contentLabel="Noticias Importantes"
+        className="fixed inset-0 flex items-center justify-center z-50"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+      >
+        <div className="bg-white p-4 max-w-md mx-auto rounded-lg">
+          <h2 className="text-2xl font-semibold">Noticias Importantes</h2>
+          {noticias.map((noticia) => (
+            <CardNotice key={noticia._id} noticia={noticia} />
+          ))}
+          <button
+            className="mt-4 py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+            onClick={closeModal}
+          >
+            Cerrar
+          </button>
+        </div>
+      </Modal>
 
     </div>
   );
